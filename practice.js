@@ -232,4 +232,25 @@ const duplicateRemove = (arr) => {
 
 const duplicateRemove2 = (arr) => [...new Set(arr)]
 
-console.log(newArr.length, duplicateRemove2(newArr).length, duplicateRemove(newArr).length, removeDuplicates(newArr).length)
+// console.log(newArr.length, duplicateRemove2(newArr).length, duplicateRemove(newArr).length, removeDuplicates(newArr).length)
+
+
+function find() {
+  let a = [];
+  for (let i = 0; i < 1000000; i++) {
+    a[i] = i * i;
+  }
+
+  return function (index) {
+    console.log(a[index]);
+  };
+}
+
+const closure = find(); 
+
+console.time("6");
+closure(6);
+console.timeEnd("6");
+console.time("12");
+closure(12);
+console.timeEnd("12");
