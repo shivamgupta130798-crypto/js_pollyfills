@@ -254,3 +254,91 @@ console.timeEnd("6");
 console.time("12");
 closure(12);
 console.timeEnd("12");
+
+function createBase(n) {
+  return function (val) {
+    console.log(n + val);
+  };
+}
+
+var addSix = createBase(6);
+
+addSix(5);
+addSix(10);
+
+for (var i = 0; i < 5; i++) {
+  function inner(i) {
+    setTimeout(() => {
+      console.log(i);
+    }, i * 1000);
+  }
+  inner(i);
+}
+
+// Q: How would you use a closure to create a private counter ?
+
+function counter() {
+  let _counter = 0;
+
+  function add(increment) {
+    _counter += increment;
+  }
+
+  function retrieve() {
+    return "Counter = " + _counter;
+  }
+
+  return {
+    add,
+    retrieve,
+  };
+}
+
+const c = counter();
+
+c.add(5);
+// console.log(c.retrieve());
+
+// Q: What is module design pattern
+
+var Module = (function () {
+  function privateMethod() {
+    console.log("private");
+  }
+
+  return {
+    publicMethod: function () {
+      // call the privateMethod
+      // do stuffs...
+      console.log("public method");
+      console.log("Invoking private methode");
+      privateMethod();
+    },
+  };
+})();
+
+Module.publicMethod();
+
+// Q Make this run only once
+
+let view;
+function likeTheVideo() {
+  let called = false;
+  return function () {
+    if (!called) {
+      view = "Deepak kashyap Liked the video";
+      console.log(view);
+      called = true;
+    } else {
+      console.log("Already called");
+    }
+  };
+}
+
+const fnLike = likeTheVideo();
+
+fnLike();
+fnLike();
+fnLike();
+fnLike();
+fnLike();
