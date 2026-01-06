@@ -82,7 +82,7 @@ function counter() {
 
 const c = counter();
 c.add(5);
-console.log("hiiii",c.retrieve())
+// console.log("hiiii",c.retrieve())
 
 // Q: What is module design pattern
 
